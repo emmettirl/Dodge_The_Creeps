@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://b21qdeq73ndu0"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_73yo6"]
+[ext_resource type="Texture2D" uid="uid://comcsg0858f0p" path="res://art/9.png" id="2_ks8bl"]
+[ext_resource type="Texture2D" uid="uid://vabuheikb7g7" path="res://art/13.png" id="2_wa2s4"]
+[ext_resource type="Texture2D" uid="uid://qq3nrrn7pm87" path="res://art/14.png" id="3_37rx3"]
+[ext_resource type="Texture2D" uid="uid://bg0htm8hia8ju" path="res://art/10.png" id="3_nawev"]
+[ext_resource type="Texture2D" uid="uid://ka88g2u7g74l" path="res://art/7.png" id="4_6xmdv"]
+[ext_resource type="Texture2D" uid="uid://dmfv5n6qcp8ea" path="res://art/11.png" id="4_rc324"]
+[ext_resource type="Texture2D" uid="uid://bytm5x560jamn" path="res://art/12.png" id="5_8hi08"]
+[ext_resource type="Texture2D" uid="uid://5gt3k4k5ay11" path="res://art/8.png" id="5_crcf4"]
+[ext_resource type="Texture2D" uid="uid://chyvcgew76egg" path="res://art/5.png" id="6_cdr5a"]
+[ext_resource type="Texture2D" uid="uid://bbqlwc3c7exx6" path="res://art/6.png" id="7_d3f84"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iuiws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wa2s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_37rx3")
+}],
+"loop": true,
+"name": &"Guinness",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ks8bl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nawev")
+}],
+"loop": true,
+"name": &"Losty",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rc324")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8hi08")
+}],
+"loop": true,
+"name": &"Tayto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cdr5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d3f84")
+}],
+"loop": true,
+"name": &"pog",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6xmdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_crcf4")
+}],
+"loop": true,
+"name": &"sus",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nvo3"]
+radius = 35.0
+height = 100.0
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_73yo6")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_iuiws")
+animation = &"Guinness"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6nvo3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
